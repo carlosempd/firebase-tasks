@@ -2,6 +2,7 @@ import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { MockService } from '../core/services/mock.service';
 import { TaskDocument } from './tasks.document';
 import { CollectionReference } from '@google-cloud/firestore';
+import { TaskDto, UpdateTaskDto } from 'src/core/dto/task.dto';
 
 @Injectable()
 export class TasksService {
@@ -33,22 +34,20 @@ export class TasksService {
         return tasks;
     }
 
-    async create(data: { title: string, description: string }): Promise<TaskDocument> {
-        // const docReference = this.tasksCollection.doc(data.title);
-        // await docReference.set({ ...data });
-        // const taskDocument = await docReference.get();
-        // const task = taskDocument.data();
-        // return task
-        const docReference = await this.tasksCollection.add({...data});
+    async create(data: TaskDto): Promise<TaskDocument> {
+        const docReference = await this.tasksCollection.add({
+            title: data.title,
+            description: data.description
+        });
         const taskDocument = await docReference.get();
         return { id: taskDocument.id, ...taskDocument.data() };
     }
 
-    async update(id: string, data): Promise<TaskDocument> {
+    async update(id: string, data: UpdateTaskDto): Promise<TaskDocument> {
         const docReference = this.tasksCollection.doc(id);
         await docReference.update(data);
         const taskDocument = await docReference.get();
-        return taskDocument.data();
+        return { id: taskDocument.id, ...taskDocument.data() };
     }
     
 }
