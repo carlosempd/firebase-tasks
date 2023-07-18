@@ -5,7 +5,6 @@ import {
     FirestoreCollectionProviders,
     FirestoreOptionsProvider
 } from './firestore.providers';
-import { type } from 'os';
 
 type FirestoreModuleOptions = {
     imports: any[];
