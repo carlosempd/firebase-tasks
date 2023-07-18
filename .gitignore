@@ -1,6 +1,8 @@
 # compiled output
 /dist
 /node_modules
+.env
+tasks-app-4989b-firebase-adminsdk-nh7mo-12b3ec9ac0.json
 
 # Logs
 logs
