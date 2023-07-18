@@ -1,30 +1,60 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Tasks api
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is an app built with [NestJS](https://github.com/nestjs/nest) framework and Firestore from [Firebase](https://firebase.google.com/) to create, list and update tasks.
+
+This API provides endpoints for managing and retrieving information about user's tasks and all endpoints are documented with Swagger, so you can test endpoints in a local environment by simply opening in your browser:
+>  ### Check endpoints locally
+>
+> http://localhost:3000/
+> 
+
+
+
+Or you can test the endpoints using a deployed version with this url:
+>  ### Check endpoints live production
+>
+> https://firebase-tasks.onrender.com/
+> 
+
+
+
+
+Here is a list of the endponts:
+| endpoint | method | description| response OK|
+| --- | --- | --- | --- |
+| /tasks | GET | Retrieves a list of all tasks | ``` [ {task1} , {task2}, ... ] ```
+/tasjs/:id | GET | Retrieves a task specified by its Id |  ``` { task } ``` |
+/tasks | POST | Creates a new tasks |  ``` { task } ``` |
+/tasks/:id | PUT | Update a task specified by its Id |  ``` { task } ``` |
+
+
+## Environment Variables
+
+It is important to configure required environment variables in order to run the project,
+here is an example with all the required env variables
+
+| **.env** |
+| --- | 
+```
+SERVICE_ACCOUNT_KEY_FILE="path_to_your_SAK_file"
+
+FIREBASE_PROJECT_ID="your_project_id"
+FIREBASE_CLIENT_EMAIL="your_client_email"
+FIREBASE_PRIVATE_KEY="your_private_key"
+
+```
+
+
+| variable | description |
+| --- | --- | 
+| SERVICE_ACCOUNT_KEY_FILE | Path to configuration file (.json) downloaded from your Firebase project configuration page (set this variable only if you use *keyFilename* to set up firebase, Refer to **app.module.ts** to see usage) |
+| FIREBASE_PROJECT_ID | Project ID from Firebase |
+| FIREBASE_CLIENT_EMAIL | Client ID from firebase |
+| FIREBASE_PRIVATE_KEY | Private key from Firebase |
+
+
 
 ## Installation
 
@@ -57,17 +87,3 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
